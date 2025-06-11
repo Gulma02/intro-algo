@@ -1,0 +1,1 @@
+print(int(input("Edad: "))*365)
