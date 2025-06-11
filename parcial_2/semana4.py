@@ -223,6 +223,26 @@ def show_user_inscription_percentage():
         percentage = int(course[2])/int(course[1])*100
         print(f"Se ha ocupado un {percentage}% del curso {course[0]}")
 
+def print_students_by_doc() -> None:
+    studentList = bubbleSort(students_list.copy())
+
+    for student in studentList:
+        print(f"Nombre: {student[0]}, Documento: {student[1]}, Sexo: {student[2]}, Cursos: {student[3]}")
+
+def print_courses_by_students_listed() -> None:
+    courseList = bubbleSort(course_list.copy())
+
+    for course in courseList:
+        print(f"Curso: {course[0]}, Estudiantes inscriptos: {course[1]}")
+
+def bubbleSort(customList) -> list:
+    for i in range(len(customList)):
+        for j in range(len(customList)):
+            if customList[j][1] > customList[i][1]: # En este caso se utiliza la posición 1 ya que en ambas listas (estudiantes y cursos) son los valores a comparar (documento y estudianes inscriptos).
+                customList[j], customList[i] = customList[i], customList[j]
+
+    return customList
+
 """
 Función que visibiliza el menú de navegación en la aplicación.
 """
@@ -233,9 +253,11 @@ def start():
     print("[3] Inscribir estudiante a curso")
     print("[4] Modificar datos estudiante")
     print("[5] Modificar datos curso")
-    print("[7] Ver porcentaje de inscritos al curso")
-    print("[8] Ver listado de cursos")
-    print("[9] Ver listado de estudiantes")
+    print("[6] Ordenar estudiantes por documento")
+    print("[7] Ordenar cursos por estudiantes inscriptos")
+    print("[8] Ver porcentaje de inscritos al curso")
+    print("[9] Ver listado de cursos")
+    print("[10] Ver listado de estudiantes")
     print("[-1] Salir del programa")
 
     return int(input())
@@ -272,11 +294,15 @@ while not close_system:
                     continue
 
                 course_modified = modify_course_data(int(input("Ingrese el identificador del curso que desea modificar: ")))
+        case 6:
+            print_students_by_doc()
         case 7:
+            print_courses_by_students_listed()
+        case 8:
             show_user_inscription_percentage()
         # Ver listado de cursos
-        case 8:
+        case 9:
             show_courses()
         # Ver listado de estudiantes
-        case 9:
+        case 10:
             show_students()

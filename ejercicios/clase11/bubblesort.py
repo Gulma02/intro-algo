@@ -6,10 +6,13 @@ def carga_datos(len):
         lista.append(random.randint(1, 1000))
 
 def bubble_sort():
+    print(lista)
     for i in range(len(lista)):
-        for j in range(len(lista) - 1):
-            if lista[j] > lista[j + 1]:
-                lista[j], lista[j + 1] = lista[j + 1], lista[j]
+        for j in range(len(lista)):
+            print(lista[i], lista[j])
+            if lista[j] > lista[i]:
+                lista[i], lista[j] = lista[j], lista[i]
+                print(lista)
 
 
 
