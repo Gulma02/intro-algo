@@ -1,37 +1,36 @@
-cantidad_alumnos_panaderia = 6
-cantidad_alumnos_pasteleria = 6
-cantidad_alumnos_chef = 2
-mas_alto = 6
+lista_productos = []
+lista_precios = []
 
-if cantidad_alumnos_chef == cantidad_alumnos_pasteleria == cantidad_alumnos_panaderia:
-    print("Todos son los más altos y más bajos.")
-elif cantidad_alumnos_chef == mas_alto:
-    if cantidad_alumnos_chef == cantidad_alumnos_panaderia:
-        print("Chef y Panadero son los más altos.")
-    elif cantidad_alumnos_chef == cantidad_alumnos_pasteleria:
-        print("Chef y Pastelero son los más altos.")
-    else:
-        print("Chef es el más alto.")
-elif cantidad_alumnos_panaderia == mas_alto:
-    if cantidad_alumnos_panaderia == cantidad_alumnos_pasteleria:
-        print("Panaderia y Pasteleria son las más altas.")
-    else:
-        print("Panaderia es la más alta.")
-else:
-    print("Pasteleria es la más alta.")
 
-if not cantidad_alumnos_chef == cantidad_alumnos_pasteleria == cantidad_alumnos_panaderia:
-    if cantidad_alumnos_chef <= cantidad_alumnos_pasteleria and cantidad_alumnos_chef <= cantidad_alumnos_panaderia:
-        if cantidad_alumnos_chef <= cantidad_alumnos_panaderia:
-            print("Chef y Panaderia son los más bajos")
-        elif cantidad_alumnos_chef <= cantidad_alumnos_pasteleria:
-            print("Chef y Pasteleria son los más bajos")
-        else:
-            print("Chef es el más bajo")
-    if cantidad_alumnos_pasteleria <= cantidad_alumnos_panaderia:
-        if cantidad_alumnos_pasteleria == cantidad_alumnos_panaderia:
-            print("Pasteleria y panaderia son los más bajos")
-        else:
-            print("Pasteleria es el más bajo")
+def sumar_productos(total):
+    total = 0
+    for precio in lista_precios:
+        total += precio
+    return total
+
+
+def mostrar_productos(productos, precios):
+    if not lista_productos:
+        print("No hay productos en la lista.")
     else:
-        print("Panaderia es el más bajo")
+        for producto, precio in zip(lista_productos, lista_precios):
+            print(f"Producto: {producto}, Precio: {precio}")
+
+
+def aplicar_descuento(descuento):
+    if lista_productos >= 5:
+        print("Aplicando descuento del 20% a todos los productos.")
+        for i in range(len(lista_precios)):
+            lista_precios[i] -= lista_precios[i] * 0.20
+    return descuento
+
+
+def main():
+    while True:
+        print("si usted no ingresa nada se saldra del programa")
+        producto = input("Ingrese el nombre del producto (o presione Enter para salir): ")
+        if producto == "":
+            break
+        precio = float(input(f"Ingrese el precio del producto '{producto}': "))
+        lista_productos.append(producto)
+        lista_precios.append(precio)
